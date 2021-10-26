@@ -1,14 +1,6 @@
 # import argparse
 import os
 import math
-'''
-parser = argparse.ArgumentParser()
-parser.add_argument("--server", "-s", nargs="?", help="Server IP", type=str, required=True)
-parser.add_argument("--port", "-p", nargs="?", help="Server PORT", const=1, type=int, default=3306, required=False)
-parser.add_argument("--user", "-u", nargs="?", help="Username", const=1, type=str, default="root", required=False)
-parser.add_argument("--password", "-c", nargs="?", help="Password", const=1, type=str, default="", required=False)
-parser = vars(parser.parse_args())
-'''
 
 KB = 1024
 MB = math.pow(1024, 2)
@@ -35,7 +27,6 @@ REAL = 8
 HEADER = 1
 CHAR = 1
 VARCHAR = 1
-HEADER = 1
 MYSQL_SIZE = 3
 
 def CalcularColumna(tipo:str, size:int):
@@ -77,8 +68,10 @@ def CalcularColumna(tipo:str, size:int):
         return VARCHAR * size + HEADER
     else:
         return 0
+
 def CuantosBloques(total:int):
     return float(total / (BLOCK_SIZE - HEADER))
+
 def Formato(number:int):
     if number >= KB and number < MB:
         return str(float(number / KB)) + " Kilobytes"
@@ -88,6 +81,7 @@ def Formato(number:int):
         return str(float(number / GB)) + " Gigabytes"
     else:
         return str(number) + " Bytes"
+        
 if __name__ == "__main__":
     os.system("cls")
     total = 0
